@@ -133,6 +133,22 @@ public class Village {
 		}
 		return s.toString();
 	}
+	
+	public Etal rechercherEtal(Gaulois vendeur) {
+		return marche.trouverVendeur(vendeur);
+	}
+	
+	public String partirVendeur(Gaulois vendeur) {
+		StringBuilder s = new StringBuilder();
+		Etal e = rechercherEtal(vendeur);
+		for(int i=0;i<marche.nbEtal;i++) {
+			if(marche.etals[i] == e) {
+				marche.etals[i].libererEtal();
+			}
+		}
+		
+		return s.toString();
+	}
 
 	public String getNom() {
 		return nom;
