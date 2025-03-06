@@ -55,7 +55,7 @@ public class Village {
 					nbEtalOccupe++;
 				}
 			}
-			etalsOccupeR = new Etal[nbEtalOccupe];
+			
 			etalsOccupeR =  Arrays.copyOf(etalsOccupe, nbEtalOccupe);
 			
 			return etalsOccupeR;
