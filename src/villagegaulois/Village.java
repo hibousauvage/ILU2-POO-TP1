@@ -1,6 +1,8 @@
 package villagegaulois;
 
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 
 import personnages.Chef;
 import personnages.Gaulois;
@@ -54,17 +56,15 @@ public class Village {
 				}
 			}
 			etalsOccupeR = new Etal[nbEtalOccupe];
-			for(int i=0;i<nbEtalOccupe;i++) {
-				etalsOccupeR[i] = etalsOccupe[i];
-			}
+			etalsOccupeR =  Arrays.copyOf(etalsOccupe, nbEtalOccupe);
+			
 			return etalsOccupeR;
 		}
 		private Etal trouverVendeur(Gaulois gaulois) {
 			for(int i=0;i<nbEtal;i++) {
-				if(etals[i].isEtalOccupe()) {
-					if(etals[i].getVendeur() == gaulois) {
+				if(etals[i].isEtalOccupe() && (etals[i].getVendeur() == gaulois)) {
 						return etals[i];
-					}
+					
 				}
 			}
 			return null;
@@ -79,7 +79,7 @@ public class Village {
 					nbEtalLibre++;
 				}
 			}
-			s.append("Il reste " + nbEtalLibre + "2tals non utilisés dans le marché.\n");
+			s.append("Il reste " + nbEtalLibre + " étals non utilisés dans le marché.\n");
 			return s.toString();
 		}
 	}
@@ -146,6 +146,16 @@ public class Village {
 				marche.etals[i].libererEtal();
 			}
 		}
+		
+		return s.toString();
+	}
+	public String afficherMarche() {
+		StringBuilder s = new StringBuilder();
+		s.append("Le marché du village ");
+		s.append(getNom());
+		s.append(" possède plusieurs étals :\n");
+		s.append(marche.afficherMarche());
+		
 		
 		return s.toString();
 	}
