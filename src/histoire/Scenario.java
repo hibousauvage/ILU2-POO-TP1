@@ -1,5 +1,6 @@
 package histoire;
 
+import myexceptions.VillageSansChefException;
 import personnages.Chef;
 import personnages.Druide;
 import personnages.Gaulois;
@@ -24,7 +25,12 @@ public class Scenario {
 		village.ajouterHabitant(obelix);
 		village.ajouterHabitant(druide);
 		village.ajouterHabitant(abraracourcix);
-		village.afficherVillageois();
+		try {
+			village.afficherVillageois();
+		}catch(VillageSansChefException e) {
+			System.out.println("ce village n'a pas de chef");
+			e.printStackTrace();
+		}
 
 		System.out.println(village.rechercherVendeursProduit("fleurs"));
 		System.out.println(village.installerVendeur(bonemine, "fleurs", 20));
